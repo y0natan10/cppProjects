@@ -18,6 +18,7 @@ int main()
 {
     // #include <filesystem>
     // manually setting the directory every time it runs to ensure it works
+    // need this (i think) for the opening of the text file
     filesystem::current_path(PROGRAM_PATH);
     int entries = 0;
     double totalDays = 0;
