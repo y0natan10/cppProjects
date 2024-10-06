@@ -10,4 +10,9 @@ and didn't want to type the 10 commands needed for optimization
 
 resinCalculator:
 currently using this to keep track of my progress/give me an estimation of
-how much time left i have for a given project
+how much time left i have for a game project
+
+TimeCalculator:
+takes the user's current time, takes the time to be added, tells you what time it will be
+can also be used to figure out how many days hours minutes seconds are in a given amount of days hours minutes seconds if initial time is set to 0 0 0
+mostly did this so i could remember how to use classes, friend, and operator overloading
