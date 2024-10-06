@@ -4,6 +4,7 @@
 #include <windows.h>
 // self explanatory
 #include <queue>
+
 using namespace std;
 
 void fillProjects(queue<string> &projects);
@@ -13,14 +14,16 @@ void chooseProgram(const int &choice);
 const char *Menu_Path = "C:\\Users\\yonir\\Documents\\CppPractice\\cppProjects\\Menu\\menu.exe";
 const char *Job_Board_Path = "C:\\Users\\yonir\\Documents\\CppPractice\\cppProjects\\Scripting\\KarutaJobBoard\\KarutaJobBoard.exe";
 const char *Resin_Calc_Path = "C:\\Users\\yonir\\Documents\\CppPractice\\cppProjects\\resinCalculator\\resinCalculator.exe";
+const char *Time_Calc_Path = "C:\\Users\\yonir\\Documents\\CppPractice\\cppProjects\\TimeCalculator\\TimeCalculator.exe";
 
 enum MENU
 {
     MENU = 1,
     KARUTA_JOB_BOARD,
-    RESIN_CALCULATOR
+    RESIN_CALCULATOR,
+    TIME_CALCULATOR
 };
-#define MAGIC_NUMBER 3;
+#define MAGIC_NUMBER 4;
 
 int main()
 {
@@ -49,12 +52,13 @@ int main()
 
     } while (choice != 0);
 
-    for (int i = 3; i >= 1; --i)
-    {
-        cout << i << endl;
-        Sleep(1000);
-    }
-
+    // for (int i = 3; i >= 1; --i)
+    // {
+    //     cout << i << endl;
+    //     Sleep(1000);
+    // }
+    cout << "Exiting:";
+    Sleep(1000);
     return 0;
 }
 
@@ -63,6 +67,7 @@ void fillProjects(queue<string> &projects)
     projects.push("Menu (you're already here dufus)");
     projects.push("Karuta Job Board");
     projects.push("Resin Calculator");
+    projects.push("Time Calculator");
 }
 
 // does not use the & so the pop does change the original
@@ -87,7 +92,7 @@ void chooseProgram(const int &choice)
         cout << "you were in the menu and you wanna go more into the menu?\n";
         Sleep(1500);
         cout << "why";
-        Sleep(10000);
+        Sleep(7000);
         system(Menu_Path);
         break;
     case KARUTA_JOB_BOARD:
@@ -95,6 +100,9 @@ void chooseProgram(const int &choice)
         break;
     case RESIN_CALCULATOR:
         system(Resin_Calc_Path);
+        break;
+    case TIME_CALCULATOR:
+        system(Time_Calc_Path);
         break;
     default:
         cout << "Exiting Menu\n";
