@@ -3,7 +3,7 @@ path:C:\Users\yonir\Documents\CppPractice\cppProjects\Menu\menu.exe
 name:Karuta Job Board
 path:C:\Users\yonir\Documents\CppPractice\cppProjects\KarutaJobBoard\KarutaJobBoard.exe
 name:Resin Calculator
-path:C:\Users\yonir\Documents\CppPractice\cppProjects\resinCalculator\resinCalculator.exe
+path:C:\Users\yonir\Documents\CppPractice\cppProjects\ResinCalculator\ResinCalculator.exe
 name:Time Calculator
 path:C:\Users\yonir\Documents\CppPractice\cppProjects\TimeCalculator\TimeCalculator.exe
 name:HoyoPlay

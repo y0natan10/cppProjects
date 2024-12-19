@@ -1,8 +1,9 @@
 #include <iostream>
 #include <fstream>
-#include <queue>
-#include <string>
 #include <vector>
+#include <queue>
+#include <algorithm>
+#include <string>
 #include <windows.h>
 
 using namespace std;
@@ -40,11 +41,31 @@ int main()
             }
             else if (nextChoice == 1)
             {
-                addProgram();
+                try
+                {
+                    if (addProgram())
+                    {
+                        cout << "Program has been added\n";
+                    }
+                }
+                catch (const string &x)
+                {
+                    cout << x;
+                }
             }
             else if (nextChoice == 2)
             {
-                deleteProgram();
+                try
+                {
+                    if (deleteProgram())
+                    {
+                        cout << "Program has been deleted\n";
+                    }
+                }
+                catch (const string &x)
+                {
+                    cout << x;
+                }
             }
             else
             {
@@ -99,40 +120,100 @@ void printProjects()
 bool addProgram()
 {
     bool success = false;
-    string name, path;
-    // reading current file content into a vector
+    bool nameExists = false;
+    bool pathExists = false;
+    bool spacesInNewPath = false;
+    string newName, newPath, line, projectName, projectPath;
+    vector<pair<string, string>> projects; // reading current file content into a vector of pairs: name, path
     ifstream inFile("projects.txt");
-    vector<string> lines;
-    string line;
+
+    // storing the current programs
     while (getline(inFile, line))
     {
+        if (line.find("name:") == 0)
+        {
+            projectName = line.substr(5);
+            getline(inFile, line);
+            if (line.find("path:") == 0)
+            {
+                projectPath = line.substr(5);
+                projects.push_back(make_pair(projectName, projectPath));
+            }
+        }
         if (line == "END OF FILE")
         {
             break;
         }
-        lines.push_back(line);
     }
     inFile.close();
 
     // Adding new program details
-    cout << "Enter the name of the new program: ";
-    getline(cin, name);
-    cout << "Enter the path of the new program: ";
-    getline(cin, path);
-    if (name != "")
+    while (!success)
     {
-        lines.push_back("name:" + name);          // Add name
-        lines.push_back("path:\"" + path + "\""); // Add path with quotes for paths with spaces
+        cout << "Enter the name of the new program (or 0 to abort): ";
+        getline(cin, newName);
+        if (newName == "0")
+        {
+            throw string("Add Program Aborted\n");
+        }
+        for (const pair<string, string> &project : projects)
+        {
+            if (project.first == newName)
+            {
+                cout << "Name already exists. Please try again.\n";
+                nameExists = true;
+                break;
+                // breaks out of the name checking so we can restart the while loop
+            }
+        }
+        if (nameExists)
+        {
+            continue;
+            // if the name exists, restart the while loop from the beginning
+        }
+
+        cout << "Enter the name of the new program (or 0 to abort): ";
+        getline(cin, newPath);
+        if (newPath == "0")
+        {
+            throw string("Add Program Aborted\n");
+        }
+        for (const pair<string, string> &project : projects)
+        {
+            if (project.second == newPath)
+            {
+                cout << "Path already exists. Please try again.\n";
+                pathExists = true;
+                break;
+                // same logic as with name
+            }
+        }
+        if (pathExists)
+        {
+            continue;
+            // same logic as with name
+        }
+
+        // if we made it here, we have a valid name and path to add
         success = true;
     }
-    lines.push_back("END OF FILE"); // Add end marker
+
+    // only if the path we want to add has any spaces will we need to wrap it in quotes
+    if (newPath.find(' ') != string::npos)
+    {
+        newPath = "\"" + newPath + "\"";
+    }
+
+    projects.push_back(make_pair(newName, newPath));
 
     // writing updated content back to file
     ofstream outFile("projects.txt");
-    for (const string &l : lines)
+    for (const pair<string, string> &project : projects)
     {
-        outFile << l << endl;
+        outFile << "name:" << project.first << endl;
+        outFile << "path:" << project.second << endl;
     }
+    outFile << "END OF FILE" << endl;
     outFile.close();
     return success;
 }
@@ -141,31 +222,21 @@ bool deleteProgram()
 {
     bool success = false;
     string name;
-    cout << "Enter the name of the program you want to delete: ";
-    getline(cin, name);
-
-    ifstream file("projects.txt");
     vector<pair<string, string>> projects;
-    string line, projectName, projectPath;
+
+    // Reading current projects into a vector
+    ifstream file("projects.txt");
+    string line;
     while (getline(file, line))
     {
         if (line.find("name:") == 0)
         {
-            projectName = line.substr(5); // get project name
+            string projectName = line.substr(5);
             getline(file, line);
             if (line.find("path:") == 0)
             {
-                projectPath = line.substr(5); // get project path
-                if (projectName != name)
-                {
-                    projects.push_back(make_pair(projectName, projectPath));
-                }
-                else
-                {
-                    cout << "Deleting name: " << projectName << endl;
-                    cout << "Deleting path: " << projectPath << endl;
-                    success = true;
-                }
+                string projectPath = line.substr(5);
+                projects.push_back(make_pair(projectName, projectPath));
             }
         }
         if (line == "END OF FILE")
@@ -175,6 +246,39 @@ bool deleteProgram()
     }
     file.close();
 
+    // Attempting to delete a program
+    while (true)
+    {
+        cout << "Enter the name of the program you want to delete (or 0 to abort): ";
+        getline(cin, name);
+        if (name == "0")
+        {
+            throw string("Delete Program Aborted\n");
+        }
+
+        // could just use auto instead since this looks like cancer
+        vector<pair<string, string>>::iterator projectToDelete = find_if(projects.begin(), projects.end(), [&](const pair<string, string> &project)
+                                                                         { return project.first == name; });
+        // if return project.first == name; ever returns true, the loop ends
+        // and our variable called 'projectToDelete' will be the element in the vector that we want to delete
+
+        // end is a null so if our variable is null that means we reached the end without finding the name
+        if (projectToDelete == projects.end())
+        {
+            cout << "Program not found. Please try again.\n";
+            continue;
+        }
+        else
+        {
+            cout << "Deleting name: " << projectToDelete->first << endl;
+            cout << "Deleting path: " << projectToDelete->second << endl;
+            projects.erase(projectToDelete);
+            success = true;
+            break;
+        }
+    }
+
+    // Writing updated content back to file
     ofstream outFile("projects.txt");
     for (const pair<string, string> &project : projects)
     {
@@ -183,6 +287,7 @@ bool deleteProgram()
     }
     outFile << "END OF FILE" << endl;
     outFile.close();
+
     return success;
 }
 
