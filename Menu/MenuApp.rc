@@ -1,0 +1,28 @@
+#include <windows.h> 
+
+#define IDD_ADDPROJECT 1000 
+// Define a unique ID for the "Add Project" dialog
+
+// Define the dialog resource for adding a project
+IDD_ADDPROJECT DIALOGEX 0, 0, 260, 100 
+// Dialog ID and size (x, y, width, height)
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU 
+// Dialog styles: modal, popup, caption, system menu
+CAPTION "Add Project" 
+// Title of the dialog window
+FONT 8, "MS Shell Dlg" 
+// Font size and typeface for the dialog
+BEGIN
+    LTEXT "Name:", -1, 10, 10, 40, 10 
+    // Static text label "Name:" at (10,10), size 40x10, no control ID
+    EDITTEXT 1001, 60, 10, 180, 12, ES_AUTOHSCROLL 
+    // Editable text box for name, ID 1001, at (60,10), size 180x12
+    LTEXT "Path:", -1, 10, 30, 40, 10 
+    // Static text label "Path:" at (10,30), size 40x10, no control ID
+    EDITTEXT 1002, 60, 30, 180, 12, ES_AUTOHSCROLL 
+    // Editable text box for path, ID 1002, at (60,30), size 180x12
+    DEFPUSHBUTTON "OK", IDOK, 60, 60, 50, 14 
+    // Default "OK" button, IDOK, at (60,60), size 50x14
+    PUSHBUTTON "Cancel", IDCANCEL, 130, 60, 50, 14 
+    // "Cancel" button, IDCANCEL, at (130,60), size
+END

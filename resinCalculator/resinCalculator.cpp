@@ -4,8 +4,8 @@
 #include <filesystem>
 
 using namespace std;
-const char *PROGRAM_PATH = "C:\\Users\\yonir\\Downloads\\cppProjects\\resinCalculator";
-const char *RESIN_PATH = "C:\\Users\\yonir\\Downloads\\cppProjects\\resinCalculator\\resinDetails.txt";
+const char *PROGRAM_PATH = "C:\\Users\\yonir\\Documents\\CppPractice\\cppProjects\\resinCalculator";
+const char *RESIN_PATH = "C:\\Users\\yonir\\Documents\\CppPractice\\cppProjects\\resinCalculator\\resinDetails.txt";
 const char *START_TIME = "Start Date: September 21, 2024, 10PM Israel Time";
 
 void collectInputs(queue<double> &inputs, int &entries, double &totalDays);
@@ -157,29 +157,30 @@ this is a backup for testing
 
 Start Date: September 21, 2024, 10PM Israel Time
 Time Passed
-Weeks: 12
-Days: 5
-Hours: 15
-Minutes: 4
-Seconds: 13
+Week: 1
+Days: 0
+Hours: 20
+Minutes: 37
+Seconds: 32
 
-Entries: 56
-Total Resin Needed: 84690
-Total Days: 470.5
-Fragile Resin needed: 1411.5
+Entries: 60
+Total Resin Needed: 165636
+Total Days: 920.2
+Fragile Resin needed: 2760.6
 Days Inputted:
-0.4 5.2 6.8 5.3 12.8
-8.6 8.3 18 29.3 8.9
-7.7 9.1 13.9 10.6 14.1
-12.6 7.6 14.1 12 13.7
-13.9 11.7 13.9 14.1 13.9
-14.1 14.1 13.9 5.1 1.1
-3.1 3.1 1.3 1.1 8.3
-0.9 2.1 2.4 0.6 7.4
-0.9 1.3 4.1 18.7 4.7
-18.7 18.7 0.9 1.3 14.2
-2.7 2.7 2.1 1.3 6.4
-6.7
+5.9 10.2 15.3 8.4 15
+ 21.8 27.7 29 25.4 29
+ 27.4 16 29 28.1 26.9
+ 26.9 28.8 28 28.8 29
+ 28.4 29 28.1 28.8 8.8
+ 8.9 10.4 4.7 4.7 6.8
+ 3.8 4.3 14 3.8 5.9
+ 5.8 3.8 11.2 4.2 8.1
+ 3.8 4.3 4.7 28.8 25.4
+ 7.8 13.1 28.8 28.8 8.1
+ 6.8 5.9 2.8 6.1 4.7
+ 11.7 4.2 26.9 14 3.4
+
 0
 
 

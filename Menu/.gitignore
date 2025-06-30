@@ -1,0 +1,5 @@
+# Ignore all .exe files in this directory
+*.exe
+
+# Ignore the projects.txt file
+projects.txt
