@@ -1,0 +1,13 @@
+# Ignore build artifacts
+*.exe
+*.obj
+*.o
+*.out
+
+# Ignore temporary files
+*~
+.DS_Store
+Thumbs.db
+
+# Ignore VSCode settings (optional, if you don't want to track them)
+.vscode/
