@@ -4,8 +4,8 @@
 #include <filesystem>
 
 using namespace std;
-const char *PROGRAM_PATH = "C:\\Users\\yonir\\Documents\\CppPractice\\cppProjects\\resinCalculator";
-const char *RESIN_PATH = "C:\\Users\\yonir\\Documents\\CppPractice\\cppProjects\\resinCalculator\\resinDetails.txt";
+const char *PROGRAM_PATH = "C:\\Users\\yonir\\Documents\\CppPractice\\cppProjects\\ResinCalculator";
+const char *RESIN_PATH = "C:\\Users\\yonir\\Documents\\CppPractice\\cppProjects\\ResinCalculator\\resinDetails.txt";
 const char *START_TIME = "Start Date: September 21, 2024, 10PM Israel Time";
 
 void collectInputs(queue<double> &inputs, int &entries, double &totalDays);

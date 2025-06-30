@@ -1,2 +1,5 @@
 # Ignore all .exe files in this directory
 *.exe
+
+#Ignore other random files
+randomStuff.*
