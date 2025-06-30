@@ -1,5 +1,0 @@
-# Ignore build artifacts
-*.exe
-
-# Ignore VSCode settings (optional, if you don't want to track them)
-.vscode/
