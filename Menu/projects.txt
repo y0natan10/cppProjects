@@ -1,0 +1,11 @@
+name:Menu (you're already here dufus)
+path:C:\Users\yonir\Documents\CppPractice\cppProjects\Menu\menu.exe
+name:Karuta Job Board
+path:C:\Users\yonir\Documents\CppPractice\cppProjects\KarutaJobBoard\KarutaJobBoard.exe
+name:Resin Calculator
+path:C:\Users\yonir\Documents\CppPractice\cppProjects\ResinCalculator\ResinCalculator.exe
+name:Time Calculator
+path:C:\Users\yonir\Documents\CppPractice\cppProjects\TimeCalculator\TimeCalculator.exe
+name:HoyoPlay
+path:"C:\Program Files\HoYoPlay\launcher.exe"
+END OF FILE
